@@ -12,11 +12,7 @@ class IndecisionApp extends Component {
   }
 
   deleteOptionshandler () {
-    this.setState ((prevState) => {
-      return {
-        options: []
-      };
-    });
+    this.setState ((prevState) => ({ options: [] }));
   }
 
   selectDecisionHandler () {
@@ -31,11 +27,9 @@ class IndecisionApp extends Component {
     } else if (this.state.options.indexOf(option) > -1) {
       return 'This option already exists'
     }
-    this.setState((prevState)=>{
-      return {
+    this.setState((prevState)=>({
         options: prevState.options.concat([option])
-      };
-    });
+    }));
   }
 
   render() {
@@ -123,9 +117,7 @@ class AddOption extends Component {
 
     const option = (e.target.elements.option.value.trim());
     const error = this.props.addOptionHandler(option);
-    this.setState(() => {
-      return { error };
-    });
+    this.setState(() => ({ error }));
   }
   render () {
     return (

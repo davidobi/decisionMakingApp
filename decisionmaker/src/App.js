@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import AddOption from './components/AddOption';
+import Options from './components/Options/Options';
+import Action from './components/Action';
+import Header from './components/Header';
 
 class IndecisionApp extends Component {
   constructor (props) {
@@ -91,98 +95,4 @@ IndecisionApp.defaultProps = {
   options: []
 };
 
-const Header = (props) => {
-  return (
-      <div>
-        <h1>{props.title} </h1>
-        {props.subtitle && <h2>{props.subtitle}</h2> }      
-      </div>
-    )
-};
-
-Header.defaultProps = {
-  title: 'Indecision App'
-};
-
-
-const Action = (props) => {
-  return (
-      <div>
-        <button 
-          onClick={props.selectDecisionHandler}
-          disabled={!props.hasOptions}    
-      >
-          What should I do?</button>
-      </div>
-    )
-}
-
-const Options = (props) => {
-  return (
-      <div>
-        <button onClick={props.deleteOptionshandler}>Remove all</button>
-        {props.options.length === 0 && <p>Please add an option to get started!</p> }
-        {
-          props.options.map((option) => (
-          <Option 
-            key={option} 
-            optionText={option}
-            deleteOptionHandler = {props.deleteOptionHandler} 
-          /> ))
-        }
-        
-        </div>
-    )
-}
-
-const Option = (props) => {
-  return (
-      <div>
-        {props.optionText}
-        <button 
-          onClick={(e) => {
-            props.deleteOptionHandler(props.optionText);
-          }}
-        >
-          remove
-        </button>
-      </div>
-    )
-}
-
-class AddOption extends Component {
-  constructor (props) {
-    super(props);
-    this.addOptionHandler = this.addOptionHandler.bind(this);
-    this.state = {
-      error: undefined
-    };
-  }
-
-  addOptionHandler (e) {
-    e.preventDefault();
-
-    const option = (e.target.elements.option.value.trim());
-    const error = this.props.addOptionHandler(option);
-    this.setState(() => ({ error }));
-
-    if (!error) {
-      e.target.elements.option.value = '';
-    }
-  }
-  render () {
-    return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p> }
-        <form 
-          onSubmit={this.addOptionHandler}
-        >
-          <input type="text" name='option' />
-          <button>Add Option</button>
-        </form>
-      </div>
-    )
-  }
-}
-  
 export default IndecisionApp;

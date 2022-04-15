@@ -5,16 +5,9 @@ import Action from './components/Action';
 import Header from './components/Header';
 
 class IndecisionApp extends Component {
-  constructor (props) {
-    super (props);
-    this.deleteOptionshandler = this.deleteOptionshandler.bind(this);
-    this.deleteOptionHandler = this.deleteOptionHandler.bind(this);
-    this.selectDecisionHandler = this.selectDecisionHandler.bind(this);
-    this.addOptionHandler = this.addOptionHandler.bind(this);
-    this.state = {
-      options: props.options
+  state = {
+      options: []
     }
-  }
 
   componentDidMount() {
     try {
@@ -41,11 +34,11 @@ class IndecisionApp extends Component {
     console.log('Component will unmount');
   }
 
-  deleteOptionshandler () {
+  deleteOptionshandler = () => {
     this.setState (() => ({ options: [] }));
   }
  
-  deleteOptionHandler (optionToRemove) {
+  deleteOptionHandler = (optionToRemove) => {
     this.setState((prevState)=> ({
       options: prevState.options.filter((option) => {
         return optionToRemove !== option;
@@ -53,13 +46,13 @@ class IndecisionApp extends Component {
     }))
   };
 
-  selectDecisionHandler () {
+  selectDecisionHandler = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
     alert(option);
   }
 
-  addOptionHandler (option) {
+  addOptionHandler = (option) => {
     if(!option) {
       return 'Enter valid value to add item';
     } else if (this.state.options.indexOf(option) > -1) {

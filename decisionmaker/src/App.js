@@ -7,7 +7,7 @@ class IndecisionApp extends Component {
     this.selectDecisionHandler = this.selectDecisionHandler.bind(this);
     this.addOptionHandler = this.addOptionHandler.bind(this);
     this.state = {
-      options: []
+      options: props.options
     }
   }
 
@@ -39,12 +39,11 @@ class IndecisionApp extends Component {
   }
 
   render() {
-    const title = 'Indecision App';
     const subtitle = 'Put your life in the hands of a computer';
 
     return (
       <div>
-        <Header title={title} subtitle={subtitle}/>
+        <Header subtitle={subtitle}/>
         <Action 
           hasOptions={this.state.options.length > 0}
           selectDecisionHandler = {this.selectDecisionHandler} 
@@ -59,55 +58,55 @@ class IndecisionApp extends Component {
   }
 }
 
-class Header extends Component {
-  render () {
-    return (
+IndecisionApp.defaultProps = {
+  options: []
+};
+
+const Header = (props) => {
+  return (
       <div>
-        <h1>{this.props.title} </h1>
-        <h2>{this.props.subtitle}</h2>       
+        <h1>{props.title} </h1>
+        {props.subtitle && <h2>{props.subtitle}</h2> }      
       </div>
     )
-  }
-}
+};
+
+Header.defaultProps = {
+  title: 'Indecision App'
+};
 
 
-class Action extends Component {
-  render () {
-    return (
+const Action = (props) => {
+  return (
       <div>
         <button 
-          onClick={this.props.selectDecisionHandler}
-          disabled={!this.props.hasOptions}    
+          onClick={props.selectDecisionHandler}
+          disabled={!props.hasOptions}    
       >
           What should I do?</button>
       </div>
     )
-  }
 }
 
-class Options extends Component {
-  render () {
-    return (
+const Options = (props) => {
+  return (
       <div>
-        <button onClick={this.props.deleteOptionshandler}>Remove all</button>
-        {this.props.options.length}
+        <button onClick={props.deleteOptionshandler}>Remove all</button>
+        {props.options.length}
         {
-          this.props.options.map((option) => <Option key={option} optionText={option} /> )
+          props.options.map((option) => <Option key={option} optionText={option} /> )
         }
         
         </div>
     )
-  }
 }
 
-class Option extends Component {
-  render () {
-    return (
+const Option = (props) => {
+  return (
       <div>
-        {this.props.optionText}
+        {props.optionText}
       </div>
     )
-  }
 }
 
 class AddOption extends Component {

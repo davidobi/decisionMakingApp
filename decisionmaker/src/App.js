@@ -76,12 +76,15 @@ class IndecisionApp extends Component {
             hasOptions={this.state.options.length > 0}
             selectDecisionHandler = {this.selectDecisionHandler} 
           />
-          <Options 
-            options={this.state.options}
-            deleteOptionshandler = {this.deleteOptionshandler}
-            deleteOptionHandler = {this.deleteOptionHandler}
-          />
-          <AddOption addOptionHandler={this.addOptionHandler}/>
+          <div className='widget'>
+            <Options 
+              options={this.state.options}
+              deleteOptionshandler = {this.deleteOptionshandler}
+              deleteOptionHandler = {this.deleteOptionHandler}
+            />
+            <AddOption addOptionHandler={this.addOptionHandler}/>
+          </div>
+          
         </div>
         
       </div>

@@ -3,6 +3,7 @@ import AddOption from './components/AddOption';
 import Options from './components/Options/Options';
 import Action from './components/Action';
 import Header from './components/Header';
+import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
 class IndecisionApp extends Component {
@@ -70,16 +71,19 @@ class IndecisionApp extends Component {
     return (
       <div>
         <Header subtitle={subtitle}/>
-        <Action 
-          hasOptions={this.state.options.length > 0}
-          selectDecisionHandler = {this.selectDecisionHandler} 
-        />
-        <Options 
-          options={this.state.options}
-          deleteOptionshandler = {this.deleteOptionshandler}
-          deleteOptionHandler = {this.deleteOptionHandler}
-        />
-        <AddOption addOptionHandler={this.addOptionHandler}/>
+        <div className='container'>
+          <Action 
+            hasOptions={this.state.options.length > 0}
+            selectDecisionHandler = {this.selectDecisionHandler} 
+          />
+          <Options 
+            options={this.state.options}
+            deleteOptionshandler = {this.deleteOptionshandler}
+            deleteOptionHandler = {this.deleteOptionHandler}
+          />
+          <AddOption addOptionHandler={this.addOptionHandler}/>
+        </div>
+        
       </div>
     );
   }

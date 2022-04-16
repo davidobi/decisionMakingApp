@@ -3,6 +3,7 @@ import AddOption from './components/AddOption';
 import Options from './components/Options/Options';
 import Action from './components/Action';
 import Header from './components/Header';
+import './styles/styles.scss';
 
 class IndecisionApp extends Component {
   state = {
